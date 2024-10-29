@@ -15,7 +15,7 @@ usage(void)
 	       "\n"
 	       "options:\n"
 	       "	-s num	Shift size, default is 13.\n"
-	       "	-c str	Custom alphabet to use instead of ASCII.\n"
+	       "	-c str	Custom cipher to use instead of ASCII.\n"
 	       "	-v	Print program version.\n"
 	       "	-h	Print this help message.\n"
 	       "\n"
@@ -28,17 +28,15 @@ main(int argc, char **argv)
 {
 	int opt, shift=13;
 	char buf[BRUTUS_BUFSIZ];
-	char *alphabet=0;
+	char *cipher=0;
 	char *result;
 	while ((opt = getopt(argc, argv, "s:c:vh")) != -1) {
 		switch (opt) {
 		case 's':
-			if (!(shift = atoi(optarg))) {
-				errx(1, "Shift has to be a number bigger than 0");
-			}
+			shift = atoi(optarg);
 			break;
 		case 'c':
-			alphabet = optarg;
+			cipher = optarg;
 			break;
 		case 'v':
 			puts(VERSION);
@@ -52,8 +50,8 @@ main(int argc, char **argv)
 		}
 	}
 	while (fgets(buf, sizeof(buf), stdin)) {
-		if (alphabet) {
-			result = brutus_custom(alphabet, shift, buf);
+		if (cipher) {
+			result = brutus_custom(cipher, shift, buf);
 		} else {
 			result = brutus_ascii(shift, buf);
 		}

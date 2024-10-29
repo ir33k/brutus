@@ -3,6 +3,12 @@
 #define ASCII_RANGE	('z' - 'a' + 1)
 
 static int
+mod(int a, int b)
+{
+	return (a % b + b) % b;
+}
+
+static int
 str_index_of(char *str, char c)
 {
 	int i;
@@ -26,10 +32,10 @@ char
 brutus_ascii_char(int shift, char c)
 {
 	if (c >= 'a' && c <= 'z') {
-		return (c + shift - 'a') % ASCII_RANGE + 'a';
+		return mod((c + shift - 'a'), ASCII_RANGE) + 'a';
 	}
 	if (c >= 'A' && c <= 'Z') {
-		return (c + shift - 'A') % ASCII_RANGE + 'A';
+		return mod((c + shift - 'A'), ASCII_RANGE) + 'A';
 	}
 	return c;
 }
@@ -54,25 +60,25 @@ brutus_rot13(char *str)
 }
 
 char
-brutus_char(char *alphabet, int shift, char c)
+brutus_char(char *cipher, int shift, char c)
 {
 	int i;
-	i = str_index_of(alphabet, c);
+	i = str_index_of(cipher, c);
 	if (i == -1) {
 		return c;
 	}
-	i = (i + shift) % str_length(alphabet);
-	return alphabet[i];
+	i = mod((i + shift), str_length(cipher));
+	return cipher[i];
 }
 
 char *
-brutus_custom(char *alphabet, int shift, char *str)
+brutus_custom(char *cipher, int shift, char *str)
 {
 	static char buf[BRUTUS_BUFSIZ];
 	int i;
 	buf[0] = 0;
 	for (i=0; str[i]; i++) {
-		buf[i] = brutus_char(alphabet, shift, str[i]);
+		buf[i] = brutus_char(cipher, shift, str[i]);
 	}
 	buf[i] = 0;
 	return buf;

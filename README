@@ -3,3 +3,32 @@ Brutus [1] the lib and CLI for Caesar cipher [2] with famous ROT13 [3].
 [1] https://en.wikipedia.org/wiki/Marcus_Junius_Brutus
 [2] https://en.wikipedia.org/wiki/Caesar_cipher
 [3] https://en.wikipedia.org/wiki/ROT13
+
+Build:
+
+	$ ./build	# Builds brutus.o lib and brutus CLI program
+
+ROT13:
+
+	$ echo "Caesar cipher" | ./brutus	# Encode
+	Pnrfne pvcure
+
+	$ echo "Pnrfne pvcure" | ./brutus	# Decode
+	Caesar cipher
+
+Custom shift:
+
+	$ echo "Caesar cipher" | ./brutus -s 8	# Encode
+	Kimaiz kqxpmz
+
+	$ echo "Kimaiz kqxpmz" | ./brutus -s -8	# Decode
+	Caesar cipher
+
+By default Brutus shifts using ASCII lower and upper case characters.
+You can define custom set of characters called Cipher.
+
+	$ echo "123ab" | ./brutus -c "123456" -s 32	# Encode
+	345ab
+
+	$ echo "345ab" | ./brutus -c "123456" -s -32	# Decode
+	123ab

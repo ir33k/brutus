@@ -23,8 +23,13 @@ TEST("ascii_char")
 
 TEST("ascii")
 {
+	/* Encode */
 	SEQ(brutus_ascii(13, "Why did the chicken cross the road?"), "Jul qvq gur puvpxra pebff gur ebnq?");
 	SEQ(brutus_ascii(1, "Why did the chicken cross the road?"), "Xiz eje uif dijdlfo dsptt uif spbe?");
+
+	/* Decode */
+	SEQ(brutus_ascii(-13, "Jul qvq gur puvpxra pebff gur ebnq?"), "Why did the chicken cross the road?");
+	SEQ(brutus_ascii(-1, "Xiz eje uif dijdlfo dsptt uif spbe?"), "Why did the chicken cross the road?");
 }
 
 TEST("rot13")
@@ -43,6 +48,11 @@ TEST("char")
 
 TEST("custom")
 {
+	/* Encode */
 	SEQ(brutus_custom("abc", 1, "abcdefgh"), "bcadefgh");
 	SEQ(brutus_custom("abc", 2, "abcdefgh"), "cabdefgh");
+
+	/* Decode */
+	SEQ(brutus_custom("abc", -1, "bcadefgh"), "abcdefgh");
+	SEQ(brutus_custom("abc", -2, "cabdefgh"), "abcdefgh");
 }
