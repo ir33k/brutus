@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+CC="cc"
+CFLAGS="-Wall -Wextra -Wshadow -Wmissing-declarations -Wswitch-enum -Wno-deprecated-declarations -pedantic -std=c89"
+
+set -e	# Stop on first error
+
+# Build lib
+$CC $CFLAGS -c brutus.c
+
+# Build and run tests
+$CC $CFLAGS -o brutus.t brutus.t.c brutus.o
+./brutus.t -v
