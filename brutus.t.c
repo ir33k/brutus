@@ -33,3 +33,16 @@ TEST("rot13")
 	SEQ(brutus_rot13("Gb trg gb gur bgure fvqr!"), "To get to the other side!");
 	SEQ(brutus_rot13("0123456789 -_=+!?<>{}[];'"), "0123456789 -_=+!?<>{}[];'");
 }
+
+TEST("char")
+{
+	OK(brutus_char("abc", 1, 'a') == 'b');
+	OK(brutus_char("abc", 1, 'b') == 'c');
+	OK(brutus_char("abc", 1, 'c') == 'a');
+}
+
+TEST("custom")
+{
+	SEQ(brutus_custom("abc", 1, "abcdefgh"), "bcadefgh");
+	SEQ(brutus_custom("abc", 2, "abcdefgh"), "cabdefgh");
+}
