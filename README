@@ -4,6 +4,8 @@ Brutus [1] the lib and CLI for Caesar cipher [2] with famous ROT13 [3].
 [2] https://en.wikipedia.org/wiki/Caesar_cipher
 [3] https://en.wikipedia.org/wiki/ROT13
 
+Library documentation is inside brutus.h.
+
 Build:
 
 	$ ./build	# Builds brutus.o lib and brutus CLI program

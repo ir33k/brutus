@@ -27,9 +27,8 @@ int
 main(int argc, char **argv)
 {
 	int opt, shift=13;
-	char buf[BRUTUS_BUFSIZ];
+	char buf[4096];
 	char *cipher=0;
-	char *result;
 	while ((opt = getopt(argc, argv, "s:c:vh")) != -1) {
 		switch (opt) {
 		case 's':
@@ -51,11 +50,11 @@ main(int argc, char **argv)
 	}
 	while (fgets(buf, sizeof(buf), stdin)) {
 		if (cipher) {
-			result = brutus_custom(cipher, shift, buf);
+			brutus_custom(cipher, shift, buf);
 		} else {
-			result = brutus_ascii(shift, buf);
+			brutus_ascii(shift, buf);
 		}
-		fputs(result, stdout);
+		fputs(buf, stdout);
 	}
 	return 0;
 }
