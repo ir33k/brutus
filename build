@@ -11,3 +11,7 @@ $CC $CFLAGS -c brutus.c
 # Build and run tests
 $CC $CFLAGS -o brutus.t brutus.t.c brutus.o
 ./brutus.t -v
+
+# Build CLI program
+$CC $CFLAGS -o brutus main.c brutus.o
+
