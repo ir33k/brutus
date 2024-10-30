@@ -1,5 +1,4 @@
 #define VERSION "v1.0"
-#define NAME	"Brutus"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,9 +8,9 @@
 #include "brutus.h"
 
 static void
-usage(void)
+usage(char *argv0)
 {
-	printf("usage: "NAME" [options] <stdin\n"
+	printf("usage: %s [options] <stdin\n"
 	       "\n"
 	       "options:\n"
 	       "	-s num	Shift size, default is 13.\n"
@@ -20,7 +19,8 @@ usage(void)
 	       "	-h	Print this help message.\n"
 	       "\n"
 		"stdin:\n"
-	       "	Text to encode comes from standard input.\n");
+	       "	Text to encode comes from standard input.\n",
+		argv0);
 }
 
 int
@@ -41,10 +41,10 @@ main(int argc, char **argv)
 			puts(VERSION);
 			return 0;
 		case 'h':
-			usage();
+			usage(argv[0]);
 			return 0;
 		default:
-			usage();
+			usage(argv[0]);
 			return 1;
 		}
 	}
