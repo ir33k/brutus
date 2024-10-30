@@ -2,13 +2,12 @@
 
 [1] https://en.wikipedia.org/wiki/Caesar_cipher
 
-All functions that take STR as argument will modify that buffer in
-place according to optional CIPHER using moving characters SHIFT
-number of times to right if number is positive or to left if negative.
-Using the same SHIFT value on encoded string but with different sigh
-will naturally decode STR message Functions that take single character
-C will return encoded/decoded character according to the same rules as
-STR message.
+Functions that take STR as argument will that string in place
+according to optional CIPHER moving characters SHIFT number of times
+to right if number is positive or to left if negative.  Using the same
+SHIFT value on encoded string but with different sigh will naturally
+decode STR message.  Functions that take single character C will
+return encoded/decoded character according to the same rules.
 */
 
 #ifndef BRUTUS_H
